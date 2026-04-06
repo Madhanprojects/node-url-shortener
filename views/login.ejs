@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body {
+    background-color: #f8f9fa;
+}
+
+.card {
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+</style>
+</head>
+
+<body>
+
+<div class="container d-flex justify-content-center align-items-center vh-100">
+
+    <div class="card p-4" style="width: 350px;">
+        <h3 class="text-center mb-3">Login</h3>
+
+        <form method="POST" action="/login">
+            <input class="form-control mb-2" type="email" name="email" placeholder="Email" required>
+            <input class="form-control mb-3" type="password" name="password" placeholder="Password" required>
+
+            <button class="btn btn-success w-100">Login</button>
+        </form>
+
+        <p class="text-center mt-3">
+            Don’t have an account? 
+            <a href="/">Signup</a>
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>
