@@ -4,5 +4,5 @@ const {generateNewUrl,GetTheWeb,showHome}=require("../controllers/url.js");
 const router=express.Router();
 router.get("/home",verifyUser,showHome);
 router.post("/newUrl",verifyUser,generateNewUrl);
-router.get("/:surl",verifyUser,GetTheWeb);
+router.get("/:surl",GetTheWeb);
 module.exports=router;
