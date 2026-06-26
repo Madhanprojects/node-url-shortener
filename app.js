@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false})); 
 //initial routes
 app.use("/",AuthRouter);
-app.use("/url",verifyUser,UrlRouter);
+app.use("/url",UrlRouter);
 //initialising serverside rendering
 app.set("view engine","ejs");
 app.set('views',path.resolve("./views"));
