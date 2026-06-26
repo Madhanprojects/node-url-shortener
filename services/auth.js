@@ -1,5 +1,5 @@
 const JWT=require("jsonwebtoken");
-const secret="madhan";
+const secret=process.env.secret;
 function SetUser(user){
     return JWT.sign(
         {

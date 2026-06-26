@@ -2,6 +2,7 @@ const { nanoid } = require("nanoid");
 const URL = require("../models/url.js");
 const User=require("../models/user.js");
 const jwt = require("jsonwebtoken");
+const secret=process.env.secret;
 const { GetUser } = require("../services/auth.js");
 const axios = require("axios");
 async function isReachable(url) {
@@ -43,7 +44,7 @@ async function GetTheWeb(req, res) {
 async function generateNewUrl(req, res) {
     const body = req.body;
     const token = req.cookies.uid;
-    const decoded = jwt.verify(token, "madhan");
+    const decoded = jwt.verify(token, secret);
     const user_id = decoded._id;
     if (!body.url) {
         return res.status(400).json({ error: "No URL is entered" });
