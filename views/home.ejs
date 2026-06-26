@@ -78,6 +78,7 @@ body {
                 <tr>
                     <th>Original URL</th>
                     <th>Short URL</th>
+                    <th>opened Count</th>
                 </tr>
             </thead>
 
@@ -89,8 +90,11 @@ body {
                         </td>
                         <td>
                             <a href="/url/<%= url.shortId %>" target="_blank">
-                                <%= url.shortId %>
+                                https://madhanProjects/<%= url.shortId %>
                             </a>
+                        </td>
+                        <td style="word-break: break-all;">
+                           <%= url.viewCount %> 
                         </td>
                     </tr>
                 <% }) %>
@@ -99,6 +103,11 @@ body {
     </div>
 
 </div>
-
+<script>
+  // Automatically reload the home page data when the user focuses back on this tab
+  window.addEventListener('focus', () => {
+      window.location.reload();
+  });
+</script>
 </body>
 </html>

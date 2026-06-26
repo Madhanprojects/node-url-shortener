@@ -4,13 +4,12 @@ const User=require("../models/user.js");
 const jwt = require("jsonwebtoken");
 const { GetUser } = require("../services/auth.js");
 const axios = require("axios");
-
 async function isReachable(url) {
     try {
-        const response = await axios.get(url, {
-            timeout: 3000, // avoid long wait
+        const response = await axios.head(url, {
+            timeout: 10000, 
+            headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)' }
         });
-
         if(response.status >= 200 && response.status < 400){
             return true;
         }
@@ -27,15 +26,18 @@ async function GetTheWeb(req, res) {
         console.log(surl);
         const data = await URL.findOne({ shortId: surl });
         console.log(data);
+        
         if (!data) {
             return res.status(404).send("URL not found");
         }
+        data.viewCount+=1;
+        await data.save();
         // Redirect to original URL
         res.redirect(data.originalUrl);
 
     } catch (err) {
         console.error(err);
-        res.status(500).send("Server Error");
+        res.status(500).send("GetWebError Error");
     }
 }
 async function generateNewUrl(req, res) {

@@ -1,11 +1,12 @@
+require('dotenv').config();
 const express=require("express");
 const app=express();
 const path=require("path");
 const cookieParser = require("cookie-parser");
 const verifyUser=require("./middlewares/user.js");
-const port=7001;
+const port=process.env.Port;
 const {connectMongodb}=require("./connection.js");
-connectMongodb("mongodb://127.0.0.1:27017/shorturl")
+connectMongodb(process.env.MONGODB)
 .then(()=>console.log("mongodb connected")
 );
 const UrlRouter=require("./routes/url.js");
@@ -21,7 +22,6 @@ app.use("/url",verifyUser,UrlRouter);
 //initialising serverside rendering
 app.set("view engine","ejs");
 app.set('views',path.resolve("./views"));
-
 //initializing the or stating the server
 app.listen(port,()=>{
     console.log("server started at port:7001");
